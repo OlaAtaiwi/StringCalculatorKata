@@ -14,8 +14,6 @@ namespace StringCalculatorClasses
             {
                 int sum = 0;
                 var numbersList = numbers.Split(',');
-                if (numbersList.Length > 3)
-                    throw new ArgumentException("Must be 3 numbers or less");
                 foreach (var number in numbersList)
                     sum += int.Parse(number);
                 return sum;

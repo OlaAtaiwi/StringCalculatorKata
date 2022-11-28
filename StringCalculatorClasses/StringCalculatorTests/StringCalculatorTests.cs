@@ -40,11 +40,13 @@ namespace StringCalculatorTests
         }
 
         [Theory]
-        [InlineData("1,2,3,4")]
-        [InlineData("1,2,3,4,7,2")]
-        public void ShouldThrowArgumentExceptionWhenInputContainsMoreThanThreeNumbers(String input)
+        [InlineData("1,2,3,4",10)]
+        [InlineData("1,2,3,4,7,2",19)]
+        [InlineData("5,5,5,10,10,10", 45)]
+        public void ShouldReturnSumOfNumbersWhenInputContainsMoreThanThreeNumbers(String input, int expected)
         {
-            Assert.Throws<ArgumentException>(() => _stringCalculator.Add(input));
+            int actual = _stringCalculator.Add(input);
+            Assert.Equal(actual, expected);
         }
 
     }
