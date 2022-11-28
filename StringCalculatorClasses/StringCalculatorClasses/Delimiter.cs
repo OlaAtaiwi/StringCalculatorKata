@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace StringCalculatorClasses
 {
@@ -12,6 +13,8 @@ namespace StringCalculatorClasses
                 numbers = numbers.Remove(0, 2);
                 delimitersString = string.Concat(numbers.TakeWhile(x => !x.Equals('\n')));
             }
+            if (delimitersString == "-")
+                throw new ArgumentException("Sorry, - is Not Accepted Delimiter");
             return delimitersString;
         }
 

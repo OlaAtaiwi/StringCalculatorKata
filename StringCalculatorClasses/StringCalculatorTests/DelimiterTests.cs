@@ -1,4 +1,5 @@
 ﻿using StringCalculatorClasses;
+using System;
 using Xunit;
 
 namespace StringCalculatorTests
@@ -24,7 +25,7 @@ namespace StringCalculatorTests
         {
             Assert.True(input.ContainsSpecialDelimiter());
         }
-        
+
         [Theory]
         [InlineData("1,2,3")]
         [InlineData("1\n5\n88")]
@@ -43,6 +44,14 @@ namespace StringCalculatorTests
         public void ShouldReturnTheSpecialDelimiterIfInputStringContains(string input, string expected)
         {
             Assert.Equal(input.GetSpecialDelimiter(), expected);
+        }
+
+        [Theory]
+        [InlineData("//-\n1,2,3")]
+        [InlineData("//-")]
+        public void ShouldThrowExceptionWhenInputContainsMinusDelimiter(string input)
+        {
+            Assert.Throws<ArgumentException>(() => input.GetSpecialDelimiter());
         }
     }
 }

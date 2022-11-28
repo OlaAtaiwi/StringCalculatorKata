@@ -78,5 +78,24 @@ namespace StringCalculatorTests
             var actual = this._stringCalculator.Add(numbers);
             Assert.Equal(expectedSum, actual);
         }
+
+        [Theory]
+        [InlineData("//-\n5-10-20")]
+        [InlineData("//-\n13,100-200")]
+        [InlineData("//-\n1O7,15\n")]
+        public void ShouldThrowExceptionWhenInputContainsMinusDelimiter(string input)
+        {
+            Assert.Throws<ArgumentException>(() => _stringCalculator.Add(input));
+        }
+
+        [Theory]
+        [InlineData("1,2, -3, 4", "-3")]
+        [InlineData("//n\n1n-2n 3 n4", "-2")]
+        [InlineData("-1, 7, -1, -3, 10, -9, 1, 0", "-1, -1, -3, -9")]
+        public void ShouldThrowExceptionWithErrorMessageIfInputContainsOneOrMoreNegativeNumbers(string input, string expectedMessage)
+        {
+            var actual = Assert.Throws<Exception>(() => this._stringCalculator.Add(input));
+            Assert.Equal("Negatives are Not Allowed:" + expectedMessage, actual.Message);
+        }
     }
 }
