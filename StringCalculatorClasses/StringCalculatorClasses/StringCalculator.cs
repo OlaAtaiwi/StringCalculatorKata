@@ -13,9 +13,13 @@ namespace StringCalculatorClasses
             else
             {
                 int sum = 0;
-                var numbersList = numbers.Split(',');
+                var numbersList = numbers.Split(',', '\n');
                 foreach (var number in numbersList)
-                    sum += int.Parse(number);
+                {
+                    int num;
+                    int.TryParse(number, out num);
+                    sum += num;
+                }
                 return sum;
             }
         }
