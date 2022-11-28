@@ -97,5 +97,14 @@ namespace StringCalculatorTests
             var actual = Assert.Throws<Exception>(() => this._stringCalculator.Add(input));
             Assert.Equal("Negatives are Not Allowed:" + expectedMessage, actual.Message);
         }
+
+        [Theory]
+        [InlineData("2000,5", 5)]
+        [InlineData("1001, 1000, 1234", 1000)]
+        [InlineData("3000, 8 \n1111\n4", 12)]
+        public void ShouldIgnoreNumbersBiggerThan_1000(string input, int expected)
+        {
+            Assert.Equal(expected, this._stringCalculator.Add(input));
+        }
     }
 }

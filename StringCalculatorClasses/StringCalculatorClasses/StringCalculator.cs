@@ -19,7 +19,7 @@ namespace StringCalculatorClasses
                 List<int> listOfNumbers = GetNumbersList(numbers, delimitersArray);
                 if (ContainsNegativeNumbers(listOfNumbers))
                     throw new Exception("Negatives are Not Allowed:" + NegativeNumbersInList(listOfNumbers));
-                return SummationOfNumbers(listOfNumbers);
+                return listOfNumbers.Where(x => x <= 1000).Sum();
             }
         }
 
@@ -48,16 +48,6 @@ namespace StringCalculatorClasses
                     finalList.Add(num);
             }
             return finalList;
-        }
-
-        private static int SummationOfNumbers(List<int> numbers)
-        {
-            int sum = 0;
-            foreach (var number in numbers)
-            {
-                sum += number;
-            }
-            return sum;
         }
     }
 }
