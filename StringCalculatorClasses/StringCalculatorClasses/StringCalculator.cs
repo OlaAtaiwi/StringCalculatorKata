@@ -23,19 +23,6 @@ namespace StringCalculatorClasses
             }
         }
 
-        private static int SummationOfNumbers(string numbers, string[] delimiters)
-        {
-            int sum = 0;
-            var numbersList = numbers.Split(delimiters, StringSplitOptions.None);
-            foreach (var number in numbersList)
-            {
-                int num;
-                int.TryParse(number, out num);
-                sum += num;
-            }
-            return sum;
-        }
-
         private string NegativeNumbersInList(List<int> listOfNumbers)
         {
             var negativeNums = listOfNumbers.Where(x => x < 0).Select(x => x.ToString());
