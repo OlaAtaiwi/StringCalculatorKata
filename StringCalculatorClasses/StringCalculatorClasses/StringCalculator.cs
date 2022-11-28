@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace StringCalculatorClasses
 {
@@ -12,16 +13,23 @@ namespace StringCalculatorClasses
                 return 0;
             else
             {
-                int sum = 0;
-                var numbersList = numbers.Split(',', '\n');
-                foreach (var number in numbersList)
-                {
-                    int num;
-                    int.TryParse(number, out num);
-                    sum += num;
-                }
-                return sum;
+                var SpecialDelimiter = numbers.GetSpecialDelimiter();
+                string[] delimiters = { ",", "\n", SpecialDelimiter };
+                return SummationOfNumbers(numbers, delimiters);
             }
+        }
+
+        private static int SummationOfNumbers(string numbers, string[] delimiters)
+        {
+            int sum = 0;
+            var numbersList = numbers.Split(delimiters,StringSplitOptions.None);
+            foreach (var number in numbersList)
+            {
+                int num;
+                int.TryParse(number, out num);
+                sum += num;
+            }
+            return sum;
         }
     }
 }

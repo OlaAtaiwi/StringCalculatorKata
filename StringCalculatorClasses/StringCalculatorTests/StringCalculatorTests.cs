@@ -55,6 +55,28 @@ namespace StringCalculatorTests
             Assert.Equal(actual, expected);
         }
 
+        [Theory]
+        [InlineData("//;\n5", 5)]
+        [InlineData("// \n13  100", 113)]
+        [InlineData("//O\n1O  2O 15 ", 18)]
+        [InlineData("//_\n11_4_17_3_10", 45)]
+        [InlineData("//\n12", 12)]
+        public void ShouldReturnCorrectSumOfIfInputContainsNumbersSeparatedBySpecialDelimiterOnly(string numbers, int expectedSum)
+        {
+            var actual = this._stringCalculator.Add(numbers);
+            Assert.Equal(expectedSum, actual);
+        }
 
+        [Theory]
+        [InlineData("//;\n5,10\n20;10", 45)]
+        [InlineData("// \n13  100,200", 313)]
+        [InlineData("//O\n1O7,15\n  2O 15 ", 40)]
+        [InlineData("//_\n11_4_17,3_10", 45)]
+        [InlineData("//\n12,", 12)]
+        public void ShouldReturnCorrectSumOfIfInputContainsNumbersSeparatedByCommaOrNewLineOrSpecialDelimiter(string numbers, int expectedSum)
+        {
+            var actual = this._stringCalculator.Add(numbers);
+            Assert.Equal(expectedSum, actual);
+        }
     }
 }
