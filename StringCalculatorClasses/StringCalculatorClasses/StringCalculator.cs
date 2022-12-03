@@ -15,8 +15,8 @@ namespace StringCalculatorClasses
             else
             {
                 var specialDelimiter = numbers.GetSpecialDelimiter();
-                string[] delimitersArray = { ",", "\n", specialDelimiter };
-                List<int> listOfNumbers = GetNumbersList(numbers, delimitersArray);
+                var delimitersArray = new string[] { ",", "\n", specialDelimiter };
+                var listOfNumbers = GetNumbersList(numbers, delimitersArray);
                 if (ContainsNegativeNumbers(listOfNumbers))
                     throw new Exception("Negatives are Not Allowed:" + NegativeNumbersInList(listOfNumbers));
                 return listOfNumbers.Where(x => x <= 1000).Sum();
@@ -40,7 +40,7 @@ namespace StringCalculatorClasses
         private List<int> GetNumbersList(string numbers, string[] delimiters)
         {
             var numbersList = numbers.Split(delimiters, StringSplitOptions.None);
-            List<int> finalList = new List<int>();
+            var finalList = new List<int>();
             foreach (var number in numbersList)
             {
                 int num;

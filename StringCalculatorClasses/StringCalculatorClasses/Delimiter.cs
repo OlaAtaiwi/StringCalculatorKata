@@ -7,7 +7,7 @@ namespace StringCalculatorClasses
     {
         public static string GetSpecialDelimiter(this string numbers)
         {
-            string delimitersString = "";
+            var delimitersString = "";
             if (numbers.ContainsSpecialDelimiter())
             {
                 numbers = numbers.Remove(0, 2);

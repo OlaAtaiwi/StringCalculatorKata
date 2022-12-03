@@ -11,7 +11,7 @@ namespace StringCalculatorTests
         [InlineData(" \n13")]
         [InlineData("\n1O7,15 ")]
         [InlineData("")]
-        public void ShouldReturnFalseIfInputDoesnotContainSpecialDelimiter(string input)
+        public void ContainsSpecialDelimiter_ShouldReturnFalse_IfInputDoesnotContainSpecialDelimiter(string input)
         {
             Assert.False(input.ContainsSpecialDelimiter());
         }
@@ -21,7 +21,7 @@ namespace StringCalculatorTests
         [InlineData("// \n13  100,200")]
         [InlineData("//O\n1O7,15\n  2O 15 ")]
         [InlineData("//_\n11_4_17,3_10")]
-        public void ShouldReturnTrueIfInputContainsSpecialDelimiter(string input)
+        public void ContainsSpecialDelimiter_ShouldReturnTrue_IfInputContainsSpecialDelimiter(string input)
         {
             Assert.True(input.ContainsSpecialDelimiter());
         }
@@ -29,9 +29,9 @@ namespace StringCalculatorTests
         [Theory]
         [InlineData("1,2,3")]
         [InlineData("1\n5\n88")]
-        public void ShouldReturnEmptyStringIfInputDoesnotContainSpecialDelimiter(string input)
+        public void GetSpecialDelimiter_ShouldReturnEmptyString_IfInputDoesnotContainSpecialDelimiter(string input)
         {
-            string expected = "";
+            var expected = "";
             Assert.Equal(input.GetSpecialDelimiter(), expected);
         }
 
@@ -41,7 +41,7 @@ namespace StringCalculatorTests
         [InlineData("//O\n1O7,15\n  2O 15 ", "O")]
         [InlineData("//_\n11_4_17,3_10", "_")]
         [InlineData("//Ola\n11Ola4Ola17", "Ola")]
-        public void ShouldReturnTheSpecialDelimiterIfInputStringContains(string input, string expected)
+        public void GetSpecialDelimiter_ShouldReturnTheSpecialDelimiter_IfInputStringContainsSpecialDelimiter(string input, string expected)
         {
             Assert.Equal(input.GetSpecialDelimiter(), expected);
         }
@@ -49,7 +49,7 @@ namespace StringCalculatorTests
         [Theory]
         [InlineData("//-\n1,2,3")]
         [InlineData("//-")]
-        public void ShouldThrowExceptionWhenInputContainsMinusDelimiter(string input)
+        public void GetSpecialDelimiter_ShouldThrowException_WhenInputContainsMinusDelimiter(string input)
         {
             Assert.Throws<ArgumentException>(() => input.GetSpecialDelimiter());
         }
